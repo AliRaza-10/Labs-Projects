@@ -1,0 +1,279 @@
+1.
+declare
+num temp.id%type;
+chara temp.ch%type;
+begin
+num:=:num;
+chara:=:chara;
+insert into temp
+values(num,chara);
+end;
+
+2.
+declare 
+grade char;
+begin
+grade:=:grade;
+if(grade='A') then 
+dbms_output.put_line('Excellent');
+elsif(grade='B') THEN
+dbms_output.put_line('sai aa');
+else
+dbms_output.put_line('resign kr dy');
+end if;
+end;
+
+3.declare 
+grade char;
+begin
+grade:=:grade;
+case
+when(grade='A') then 
+dbms_output.put_line('Excellent');
+when(grade='B') THEN
+dbms_output.put_line('sai aa');
+else
+dbms_output.put_line('resign kr dy');
+end case;
+end;
+4.
+declare 
+grade char;
+g varchar2(13);
+begin
+grade:=:grade;
+case
+when(grade='A') then 
+g:='excellent';
+--dbms_output.put_line('Excellent');
+when(grade='B') THEN
+g:='sai aa';
+--dbms_output.put_line('sai aa');
+else
+--dbms_output.put_line('resign kr dy');
+g:='resign kr dy';
+end case;
+dbms_output.put_line(g);
+end;
+5.
+declare 
+grade number(5);
+g varchar2(13);
+begin
+grade:=:grade;
+case
+when(grade between 85 and 100) then 
+g:='excellent';
+--dbms_output.put_line('Excellent');
+when(grade between 70 and 80) THEN
+g:='sai aa';
+--dbms_output.put_line('sai aa');
+else
+--dbms_output.put_line('resign kr dy');
+g:='resign kr dy';
+end case;
+dbms_output.put_line(g);
+end;
+6.DECLARE
+  l_counter NUMBER := 0;
+BEGIN
+  LOOP
+    l_counter := l_counter + 1;
+    IF l_counter > 3 THEN
+      EXIT;
+    END IF;
+    dbms_output.put_line( 'Inside loop: ' || l_counter )  ;
+  END LOOP;
+  -- control resumes here after EXIT
+  dbms_output.put_line( 'After loop: ' || l_counter );
+END;
+7.
+DECLARE
+  l_counter NUMBER := 0;
+BEGIN
+  LOOP
+    l_counter := l_counter + 1;
+    EXIT WHEN l_counter > 5;
+    dbms_output.put_line( 'Inside loop: ' || l_counter ) ;
+  END LOOP;
+
+  -- control resumes here after EXIT
+  dbms_output.put_line( 'After loop: ' || l_counter );
+END;
+
+8.//while loop
+DECLARE
+  n_counter NUMBER := 1;
+BEGIN
+  WHILE n_counter <=5
+  LOOP
+    DBMS_OUTPUT.PUT_LINE( 'Counter : ' || n_counter );
+    n_counter := n_counter + 1;
+  END LOOP;
+END;
+9.
+BEGIN  
+FOR k IN 7..14 LOOP  
+-- note that k was not declared  
+DBMS_OUTPUT.PUT_LINE(k);  
+END LOOP;  
+END;   
+10.
+DECLARE
+ emp_record emp%rowtype;
+BEGIN
+ SELECT * INTO emp_record from emp where empno=7499;
+DBMS_OUTPUT.PUT_LINE (emp_record.ename);
+DBMS_OUTPUT.PUT_LINE (emp_record.job);
+DBMS_OUTPUT.PUT_LINE (emp_record.sal);
+END;
+11.
+DECLARE
+id emp.empno%type;
+name emp.ename%type;
+BEGIN
+SELECT empno, ename INTO id, name FROM emp
+WHERE empno=7499;
+DBMS_OUTPUT.PUT_LINE (id|| ' exist');
+EXCEPTION
+WHEN NO_DATA_FOUND THEN
+DBMS_OUTPUT.PUT_LINE (id|| 'does not exist');
+END;
+12.
+DECLARE
+ c_ename emp.ename%type;
+c_job emp.job%type;
+CURSOR emp_cursor IS SELECT ename,job from emp;
+BEGIN
+OPEN emp_cursor;
+LOOP
+ FETCH emp_cursor INTO c_ename,c_job;
+ EXIT WHEN  c_ename='WARD';
+ DBMS_OUTPUT.PUT_LINE (c_ename||' is a '||c_job);
+END LOOP;
+ CLOSE emp_cursor;
+END;
+13.
+DECLARE 
+SALAY EMP.SAL%TYPE;
+GR SALGRADE.GRADE%TYPE;
+CURSOR NUMEER_QADRI IS SELECT  SAL ,GRADE FROM EMP JOIN SALGRADE
+ON SAL BETWEEN LOSAL AND HISAL;
+BEGIN
+OPEN  NUMEER_QADRI;
+LOOP
+FETCH NUMEER_QADRI INTO SALAY ,GR ;
+EXIT WHEN NUMEER_QADRI%NOTFOUND;
+DBMS_OUTPUT.PUT_LINE(SALAY||' AND '||GR);
+END LOOP;
+CLOSE NUMEER_QADRI;
+END;
+14.1//cursor updation
+DECLARE 
+SALAY EMP.SAL%TYPE;
+GR emp.ename%TYPE;
+CURSOR NUMEER_QADRI IS SELECT  SAL ,ename FROM EMP;
+BEGIN
+OPEN  NUMEER_QADRI;
+LOOP
+FETCH NUMEER_QADRI INTO SALAY,gr;
+salay:=salay+500;
+EXIT WHEN NUMEER_QADRI%NOTFOUND;
+DBMS_OUTPUT.PUT_LINE(gr||' has a salary '||SALAY);
+END LOOP;
+CLOSE NUMEER_QADRI;
+END;
+14.2
+BEGIN 
+   greetings; 
+END; 
+/
+15.
+CREATE OR REPLACE PROCEDURE greetings 
+AS 
+BEGIN 
+   dbms_output.put_line('Hello World!'); 
+END; 
+/
+16.
+CREATE OR REPLACE PROCEDURE findMin(x IN number, y IN number, z OUT number) IS
+BEGIN
+ IF x < y THEN
+ z:= x;
+ ELSE
+ z:= y;
+ END IF;
+END; 
+
+17.
+declare 
+a number;
+b number;
+c number;
+BEGIN
+ a:= 23;
+ b:= 45;
+ findMin(a, b, c);
+dbms_output.put_line('Minimum of (23, 45) : ' || c);
+END;
+/
+18.
+create  or replace procedure condition_check(a in varchar2,b in varchar2,c out varchar2) is
+begin
+if(a=b) then 
+c:=a;
+dbms_output.put_line('the result is='||c);
+end if;
+end;
+
+19.
+create or replace procedure insert_record(a varchar2,b varchar2) is
+begin
+insert into temp values(a,b);
+end;
+20.
+declare
+a temp.name%type;
+b temp.rollNo%type;
+begin
+a:=:a;
+b:=:b;
+insert_record(a,b);
+end;
+21.
+create or replace function compute_grade(a number) 
+return char is
+m EMP.SAL%type;
+begin
+select SAL into m from emp where EMPNO=a;
+if (m>=5000) then return 'Pass';
+else return 'Fail';
+end if;
+exception
+when no_data_found then
+return 'no data found';
+end;
+22.//calling a function
+select compute_grade(7521) from dual
+23.declare 
+a number;
+b number;
+flag number;
+begin
+a:=2;
+flag:=1;
+b:=:b;
+for a in 2..b/2
+loop
+if mod(b,a)=0 then
+flag:=0;
+exit;
+end if;
+end loop;
+if flag=1 then
+dbms_output.put_line('prime');
+else
+dbms_output.put_line(' non prime');
+end if;
+end;
+/

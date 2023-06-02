@@ -1,0 +1,89 @@
+1.create user hassan
+identified by hassan10
+2.alter user hassan
+identified by hassanraza10
+3.desc all_users
+4.
+GRANT CONNECT TO HASSAN;
+5.grant create table to hassan(grant access from the origanal user)
+6.
+
+grant all on emp to hassan
+7.
+select * from system.emp
+8.
+grant connect to hassan
+with admin option
+9.
+create role ali
+10.
+grant create table ,create view to manager
+11.
+grant manager to hassan ,yasir
+12.
+grant connect to manager
+13.
+revoke connect from manager
+14.
+revoke create view from manager
+15.
+create table system.rehman
+(name varchar2(13) )
+16.DECLARE 
+ID NUMBER(10);
+NAME VARCHAR2(15);
+BEGIN
+ID:=12345;
+NAME:='ALI';
+DBMS_OUTPUT.PUT_LINE (ID);
+END;
+17.DECLARE 
+ID NUMBER(10);
+NAME VARCHAR2(15);
+BEGIN
+ID:=12345;
+NAME:='ALI';
+DBMS_OUTPUT.PUT_LINE ('ROLL_NO='||ID);
+END;
+
+18.USER PROMPT
+DECLARE 
+ID NUMBER(10);
+NAME VARCHAR2(15);
+BEGIN
+--ID:=12345;
+ID:=:ID;
+--DBMS_OUTPUT.PUT_LINE ('ROLL_NO=':ID);
+DBMS_OUTPUT.PUT_LINE ('ROLL_NO='||ID);
+END;
+19.DECLARE 
+X CHAR;
+BEGIN
+X:=:X;
+DBMS_OUTPUT.PUT_LINE('CHARACTER='||X);
+END;
+20.DECLARE
+A NUMBER(25);
+BEGIN
+A:=:A+7;
+DBMS_OUTPUT.PUT_LINE(A+12);
+END;
+21.
+BEGIN
+INSERT INTO EMP
+VALUES(106,NULL,NULL,NULL,NULL,NULL,NULL,20);
+END;
+22.
+DECLARE 
+A NUMBER(5);
+B NUMBER(4);
+BEGIN
+A:=:A;
+B:=:B;
+INSERT INTO EMP
+VALUES(A,NULL,NULL,NULL,NULL,NULL,NULL,B);
+END;
+
+
+
+

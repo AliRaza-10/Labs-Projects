@@ -1,0 +1,75 @@
+1-select ename,sal,(sal*12) as"Annual Salary" from emp;
+2-select *from emp where job  in ('CLERK','MANAGER');
+3-select *from emp where job ='CLERK' and deptno=20;
+4-select *from emp where job <>'MANAGER';
+5-select *from emp where deptno!=20 and deptno!=30;
+6-select ENAME,job ,(sal+500) as "new Salary Column For Salesman" from emp where job='SALESMAN'
+7-select * from emp WHERE SAL BETWEEN 2000 AND 3000;
+8-select sal, (0.20*sal) as "TWENTY PERCENT SALARY OF MANAGER" from emp where job ='MANAGER';
+9-select ename,sal,(sal/30) as "Daily Wages" from emp;
+10-select * from emp where (comm<sal) and (comm is not null);
+11-select * from emp where mgr in(7902, 7566, 7788);
+12-select concat(ename,job) as "COMP_NAME" from emp;
+13-select ename||' IS A '||job||' and he is working in the deptNo '||deptno||' since '||to_char(hiredate,'dd/Mon/yyyy') as "MERGED STATEMENT" from emp;
+14-select * from emp where ename like'S%';
+15-select * from emp where ename like '%R' or ename like '%N';
+16-select * from emp where (ename like 'W%' or ename like 'K%') and (DEPTNO!=10 and deptno!=20);
+17-select * from emp where job!='MANAGER';
+18-select * from emp where (length(ename)=5) and job='MANAGER';
+19-select * from emp where job in('CLERK','MANAGER') and (sal between 1000 and 2000);
+20-select ename, sal, (sal/30) as "Daily Wages Of Each Employye" from emp 
+21-select ename,sal,(sal*12) as "Annual Salary Display",nvl2(comm*12,sal*12+comm*12,sal*12) as"ANNUAL_SALARY WITH COMM IF THERE" from emp;
+22-select * from emp where mgr in(7902, 7566, 7788);
+23-SELECT JOB,round(AVG(SAL),2) "AVG Salary in Each Dept" FROM EMP GROUP BY JOB;
+24-select count(job) as"NO OF Manager" from emp
+where job like 'MANAGER';
+25-select (max(sal)-min(sal)) as"Difference between salaries Max-MIN" from emp;
+26-select job,max(sal) as "Max Sal",min(sal) as "Min Sal" from emp group by job
+having (avg(sal))>=2500 ;
+27-select ename,HIREDATE,add_months(hiredate,6)as "Last Day Of Probation" from emp;
+28-select ename,mgr from emp
+where ename like 'SCOTT'
+29-SELECT JOB,AVG(SAL) FROM EMP
+GROUP BY JOB;
+30-select ename,round((sysdate-hiredate)/365,2) as "Year Bases",round(months_between(sysdate,hiredate),2) as "Month Bases"from emp;
+31-select ename,job,sal from emp
+where (job in('CLERK','SALESMAN ') AND (sal !=950 and sal !=1300 and sal !=1800));
+32-SELECT ENAME,DEPTNO FROM EMP
+WHERE DEPTNO=20 OR DEPTNO=50 ORDER BY ENAME;
+33-SELECT ENAME,SAL,COMM FROM EMP
+WHERE COMM IS NOT NULL ORDER BY SAL DESC,COMM DESC;
+34-select initcap(ename) as "Capital Letter Started Names" ,length(ename) as "Lengths of Name" from emp
+where ename like 'J%' or ename like 'K%' or ename like 'S%' or lower(ename) like 'j%' or lower(ename) like 'k%' or lower(ename) like 's%';
+35-select ename,sal ,comm ,MOD(nvl2(comm,(sal*1.50)+comm,sal*1.50),5000) as "REMAINDER" from emp where sal>800;
+select ename, sal, comm,mod(nvl2(comm, sal*1.5+comm, sal*1.5),5000) from emp where sal>800
+36-select count(job) as "TOTAL MANAGER" from emp
+where job='MANAGER' and sal>2500;
+37-select min(sal) as "MINIMUMSAL",max(sal) as "MAXIMUMSAL",ROUND(avg(sal),6) as "AVERAGESAL",SUM(SAL) AS "SUMOFSAL" FROM EMP;
+38-SELECT COUNT(rownum) as"TOTAL NO OF ROWS" FROM EMP;
+39-select min(hiredate)"BOOMER",max(hiredate)"noob" from emp;
+40-select min(hiredate),SUM(SAL) from emp
+WHERE JOB='ANALYST'
+41-select  grade,to_char(losal,'$99,999') "losal" ,to_char(hisal,'$99,999') "hisal" from salgrade;
+42-select .2*sal  "HOME RENT" , .05*sal "MEDICAL ALLOWANCE"  , .07*sal  "CONVEYANCE"  ,.03*sal "Tax" , (sal-(.2*sal+.05*sal+.07*sal+.03*sal)) "Take Home salaray"from emp
+43-SELECT to_char(sysdate,'dd Month yyyy hh:mi:ss') as "TIMESTAMP "from dual;
+44-select ename,TO_CHAR(hiredate,'DD MONTH YYYY') "CURRENT",to_char(next_day(add_months(hiredate,7),'MONDAY'),'DD MONTH YYYY') as "REVIEW DATE" from emp;
+45-select substr(ename,-2,1) "2nd Last character",INITCAP(ENAME) AS "CamleCased NAME" from emp;
+46-select ename,sal,lpad(sal,15,'$') as "SALARY" from emp;
+47-select CONCAT ('WORLD', 'HELLO') as  "ANS=HELLOWORLD",SUBSTR ('FREDRICK',2,4) AS " ANS=REDR",LENGTH ('FRANKLIN') as "ANS= 8", INSTR ('STEVE', 'E') as "ANS=3" FROM EMP;
+48-SELECT concat(CONCAT(SUBSTR(JOB,0,3),'-'),substr(empno,-2)) as "EMP-CODE" from emp;
+49-select to_char(hiredate,'yyyy') AS "ONLY YEAR" from emp;
+50-select ename,sal,comm, nvl2(comm,comm+sal,sal) as "NET Scene using nvl2" from emp;
+51-SELECT ename, length(ENAME)-length(REPLACE(ENAME,'A','')) AS "Count of A'S'" ,length(ENAME)-length(REPLACE(ENAME,'R','')) as "Count of R'S'" from emp;
+52-select to_char(hiredate,'MONTH') AS "ONLY MONTH" from emp;
+53-select ename,job as "BEFORE REPLACE",replace(job,'ANALYST','ENGINEER') as "REPLACED JOBS" from emp
+54-SELECT ename, job, sal,
+CASE job WHEN 'MANAGER' then sal+SAL*0.1
+WHEN 'PRESIDENT'then sal+SAL*0.25
+WHEN 'CLERK' then sal+SAL*0.5
+ELSE sal END "REVISED_SALARY_NAMED"
+FROM emp;
+select ename,job,sal,DECODE(job,'MANAGER',sal+SAL*0.1,'PRESIDENT',sal+SAL*0.25 , 'CLERK' ,sal+SAL*0.5,sal) AS "Revised INCREASED Sal" FROM EMP;
+55-SELECT DEPTNO,COUNT(*) FROM EMP
+GROUP BY DEPTNO;
+
+

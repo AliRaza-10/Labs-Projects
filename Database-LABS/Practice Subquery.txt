@@ -1,0 +1,8 @@
+1-SELECT ename  FROM   emp
+WHERE  sal >   (SELECT sal FROM   emp WHERE  empno=7566);
+2- SELECT   ename, job  FROM     emp
+ WHERE    job = (SELECT  job  FROM   emp WHERE empno = 7369)
+ AND      sal < (SELECT  sal  FROM emp WHERE empno = 7876); 
+3-SELECT ename, job, sal  FROM	emp
+ WHERE sal = (SELECT	MIN(sal) FROM emp);
+

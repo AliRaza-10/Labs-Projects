@@ -1,0 +1,48 @@
+1-select e.ename,dname,d.deptno from emp e, dept d
+where e.deptno=d.deptno order by deptno desc;
+
+2-select e.ename,dname,d.deptno from emp e INNER JOIN dept d
+ON e.deptno=d.deptno 
+
+3-select empno,ename,e.deptno,d.deptno,dname from dept d left outer join emp e on e.deptno=d.deptno;
+
+
+4-select empno,ename,e.deptno,d.deptno,dname from emp e left outer join dept d on e.deptno=d.deptno;
+
+
+5-select empno,ename,e.deptno,d.deptno,dname from emp e full outer join dept d on e.deptno=d.deptno;
+
+6-select ename,empno,d.deptno,dname from emp e right join dept d ON e.deptno=d.deptno
+MINUS
+select ename,empno,d.deptno,dname from emp e  join dept d ON e.deptno=d.deptno
+
+select ename,empno,d.deptno,dname from dept d left join emp e ON e.deptno=d.deptno
+MINUS
+select ename,empno,d.deptno,dname from emp e  join dept d ON e.deptno=d.deptno
+
+select ename,empno,d.deptno,dname from dept d left join emp e ON e.deptno=d.deptno
+INTERSECT
+select ename,empno,d.deptno,dname from emp e  join dept d ON e.deptno=d.deptno
+
+select ename,empno,d.deptno,dname from dept d left join emp e ON e.deptno=d.deptno
+UNION
+select ename,empno,d.deptno,dname from emp e  join dept d ON e.deptno=d.deptno
+
+
+7-SELECT
+emp.empno, emp.ename, emp.deptno,dept.dname,
+dept.deptno, dept.loc
+FROM
+emp, dept
+WHERE
+emp.deptno=dept.deptno
+AND dept.dname like 'SALES';
+
+
+
+8-SELECT e.ename, d.deptno, d.dname FROM emp e LEFT JOIN dept d ON e.deptno = d.deptno where dname like 'RESEARCH'
+
+9-SELECT e.ename, e.sal, s.grade FROM emp e JOIN salgrade s ON e.sal
+BETWEEN s.losal AND s.hisal;
+
+
