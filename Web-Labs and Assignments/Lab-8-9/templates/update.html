@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href= "{{ url_for('static',filename ='css/styles.css')}}" rel="stylesheet"/>
+    <title>Add Contacts</title>
+</head>
+<body>
+    <a href = "/dashboard"> HOME </a> <br>
+<form action="/up" method="POST">
+    <label>Name:
+    </label>
+    <input type="text" name="uname"/><br>
+    <!-- <label>Mobile:
+    </label>
+    <input type="text" name="mobile"/><br>
+    <label>City:
+    </label>
+    <input type="text" name="city"/><br>
+    <br>
+    <label>Profession:
+    </label>
+    <input type="varchar" name="Profession"/><br> -->
+    <br>
+    <input type="submit" value="Add">
+</form>
+<h1>{{ error }}</h1>
+
+</body>
+</html>

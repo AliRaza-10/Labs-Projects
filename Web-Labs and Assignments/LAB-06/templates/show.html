@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> <Canvas>Contacts</Canvas></title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>City</th>
+            <th>Profession</th>
+        </tr>
+        {%for i in name%}
+        <tr>
+            <td>
+                {{i[0]}}
+            </td>
+            <td>
+                {{i[1]}}
+            </td>
+            <td>
+                {{i[2]}}
+            </td>
+            <td>
+                {{i[3]}}
+            </td>
+            <td>
+                {{i[4]}}
+            </td>
+        </tr>
+        {%endfor%}
+    </table>
+</form> 
+{{ message }}
+</body>
+</html>

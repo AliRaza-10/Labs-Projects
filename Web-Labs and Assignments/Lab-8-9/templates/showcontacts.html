@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href= "{{ url_for('static',filename ='css/styles.css')}}" rel="stylesheet"/>
+    <style>
+        body {background-color:cadetblue;}
+        h1   {color: blue;}
+        </style>
+</head>
+<body>
+    <div class = "contact">
+<h1> Welcome {{ uname }} </h1>
+<a href="/logout">logout</a> <br>
+<a href="/dashboard">dashboard</a> <br> <br>
+{%if contacts %}
+<table border= "2px"   height="40%" width="30%">
+    <tr>
+        <th style="border: 3px solid red;">Name</th>
+        <th style="border: 3px solid red;">Mobile</th>
+        <th style="border: 3px solid red;">City</th>
+        <th style="border: 3px solid red;">Profession</th>
+
+    </tr>
+    {% for contact in contacts %}
+        <tr>
+        <td>{{contact[1]}}</td>
+        <td>{{contact[2]}}</td>
+        <td>{{contact[3]}}</td>
+        <td>{{contact[4]}}</td>
+        </tr>
+    {% endfor %}
+</table>
+{%endif%}
+<h1> {{error}}</h1>
+</div>
+</body>
+</html>

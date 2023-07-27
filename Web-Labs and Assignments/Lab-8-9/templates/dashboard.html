@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Dashboard</title>
+    <link href= "{{ url_for('static',filename ='css/styles.css')}}" rel="stylesheet"/>
+    <style>
+        body {background-color: pink;}
+        h1   {color: blue;}
+        </style>
+</head>
+<body>
+    <div class ="center">
+<h1>Welcome {{ uname }}</h1>
+<center>
+    <a href="/showcontacts">show contacts</a> <br>
+<a href="/addcontact">add contact</a><br>
+<a href="/searchcontact">Search contact</a><br>
+<a href="/update">Update contact</a><br>
+<a href="/delete">Delete contact</a><br>
+<a href="/logout">logout</a><br>
+</center>
+<h1>{{contact}} </h1> <br>
+</div>
+</body>
+</html>

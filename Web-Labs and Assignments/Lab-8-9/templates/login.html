@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href= "{{ url_for('static',filename ='css/styles.css')}}" rel="stylesheet"/>
+    <style>
+        body {background-color: rgb(181, 176, 230);
+        padding: 2px;}
+        h1   {color: blue;}
+        </style>
+</head>
+<body>
+    <div class ="login">
+    <a href = "\"> HOME </a> <br><br>
+<form action="/loggin" method="POST">
+    <div class="form-group">
+    <label>email:
+    </label>
+    <input type="email" name="uname"/><br><br>
+    </div>
+    <div class="form-group">
+    <label>Password:
+    </label>
+    <input type="password" name="pwd"/><br>
+    <br>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="login">
+    </div>
+
+</form>
+<h1>{{ error }}</h1>
+</div>
+</body>
+</html>

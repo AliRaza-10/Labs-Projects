@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href= "{{ url_for('static',filename ='css/styles.css')}}" rel="stylesheet"/>
+
+</head>
+<body>
+    <div class = "contact">
+<h1> Welcome {{ uname }} </h1>
+<a href="/logout">logout</a> <br>
+<a href="/dashboard">dashboard</a> <br> <br>
+<form action="/search" method="POST">
+    <label>Name:
+    </label>
+    <input type="text" name="uname"/><br>
+    <input type="submit" value="Add">
+{%if contacts %}
+<table border="1">
+    <tr>
+        <th>name</th>
+    <th> mobile</th>
+        <th> city</th>
+        <th>profession</th>
+    </tr>
+    {% for contact in contacts %}
+        <tr>
+        <td>{{contact[1]}}</td>
+        <td>{{contact[2]}}</td>
+        <td>{{contact[3]}}</td>
+        <td>{{contact[4]}}</td>
+        </tr>
+    {% endfor %}
+</table>
+{%endif%}
+</form>
+<h1> {{error}}</h1>
+</div>
+</body>
+</html>

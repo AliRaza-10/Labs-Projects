@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link href= "{{ url_for('static',filename ='css/styles.css')}}" rel="stylesheet"/>
+    <style>
+        body {background-color: pink;}
+        h1   {color: blue;}
+        </style>
+</head>
+<body>
+    <a href = "\"> HOME </a> <br>
+<form action="/registerr" method="POST">
+    <label>email:
+    </label>
+    <input type="email" name="uname"/><br>
+    <label>Password:
+    </label>
+    <input type="password" name="pwd"/><br>
+    <br>
+    <input type="submit" value="register">
+</form>
+<h1>{{ error }}</h1>
+
+</body>
+</html>
