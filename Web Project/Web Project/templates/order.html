@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Confirm Order</title>
+    <link rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://js.stripe.com/v3/"></script>
+
+    <style>
+    body {
+      background-image: url("static/1.jpg");
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-attachment: fixed;
+    }
+    form {
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    form div {
+      margin-bottom: 15px;
+    }
+
+    form input[type="text"],
+    form input[type="number"] {
+      padding: 10px;
+      width: 300px;
+    }
+
+    form input[type="submit"] {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .center{
+        padding: 5px;
+        background-color: #f1f1f1;
+        text-align: center;
+        color: black;
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+    .image{
+      text-align: center;
+    }
+    * {
+      box-sizing: border-box;
+      }
+      body {
+        font-family: 'Montserrat', sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        min-height: 100vh;
+      }
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+  
+  
+      h2,
+      h3,
+      a {
+        color: #34495e;
+      }
+  
+      a {
+        text-decoration: none;
+      }
+  
+      .logo {
+        margin: 0;
+        font-size: 1.45em;
+      }
+  
+      .main-nav {
+        margin-top: 5px;
+  
+      }
+      .logo a,
+      .main-nav a {
+        padding: 10px 15px;
+        text-transform: uppercase;
+        text-align: center;
+        display: block;
+      }
+  
+      .main-nav a {
+        color: #34495e;
+        font-size: .99em;
+      }
+  
+      .main-nav a:hover {
+        color: #718daa;
+      }
+  
+      .header {
+        padding-top: .5em;
+        padding-bottom: .5em;
+        border: 1px solid #a2a2a2;
+        background-color: #f1f1f1;
+        -webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+        box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+      }
+  
+      @media (min-width: 769px) {
+        .header,
+        .main-nav {
+          display: flex;
+        }
+        .header {
+          flex-direction: column;
+          align-items: center;
+            .header{
+          width: 80%;
+          margin: 0 auto;
+          max-width: 1150px;
+        }
+        }
+  
+      }
+  
+      @media (min-width: 1025px) {
+        .header {
+          flex-direction: row;
+          justify-content: space-between;
+        }
+  
+      }
+      .logo a {
+        color: #234666;
+        text-decoration: none;
+      }
+      .logo .message {
+        margin: 15px 0 0;
+        color: #b3b3b3;
+        font-size: 12px;
+      }
+  </style>
+  </head>
+  <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/64afdddb94cf5d49dc635297/1h57fl96u';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+  <body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="alert alert-danger">
+        <ul>
+          {% for message in messages %}
+            <h4>{{ message }}</h4>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  {% endwith %}
+    <header class="header">
+      <h1 class="logo"><a href="#">Pizza Restaurant</a></h1>
+        <ul class="main-nav">
+      <li><a href="/">Home</a></li>
+      <li><a href="/contact">Contact</a></li>
+      {% if profile %}
+      <li><a href="/profile">Profile</a></li>
+      {% endif %}
+    </ul>
+	</header>
+    {% if msg %}
+    <div class=center><h2>{{ msg }}</h2></div>
+    {% endif %}
+   
+    {% if not msg %}
+    <form action="/Confirm" method="POST">
+      <div>
+        <input type="text" placeholder="Name" name="name" required>
+      </div>
+      <br>
+      <div>
+        <input type="number" placeholder="Phone No" name="phNo" required>
+      </div>
+      <br>
+      <div>
+        <input type="text" placeholder="Address" name="address" required>
+      </div>
+      <br>
+      <div>
+        <!-- <input type="submit" value="Order now" class="btn btn-primary"> -->
+        {% if point2 %}
+        <button type="submit" class="btn btn-primary">Order</button>
+        {%endif%}
+        {% if not point2 %}
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="pk_test_51NQyCPJoJLLxswUmZGBB0K0QKXIehFXPVzG7dPiSPOR045U2a6bhiUoLk9ksWVY7xEWX0PNr77RqMrGBJzjWqfWu00Kv5AY4B4"
+            data-description="Order Payment"
+            data-amount={{payment}}
+            data-locale="auto">
+        </script>
+        {%endif%}
+      </div>
+    </form>
+    {% endif %}
+    {% if error %}
+    <div class="image">
+      <img src="static/meme.png" width="500" height="333">
+    </div>
+    <div class="center">
+      <h2> {{error}}</h2>
+      {% endif %}
+    </div>
+</html>
